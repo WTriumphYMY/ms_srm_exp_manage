@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>通过名字查找试验数据</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.bundle.min.js"></script>
+
+    <form action="/findByName" method="post">
+        <div class="card card-outline-secondary my-4">
+            <div class="card-header">
+                查找试验数据
+            </div>
+            <div class="card-body">
+                <table  border="0" cellspacing="0" align="left">
+                    <tr>
+                        <td >
+                            <div class="form-group">
+                                <label for="srmName">试验名称/编号</label>
+                                <input type="text" name = "srmName" id="srmName" class="form-control"/>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td >
+                            <input type="submit" class="btn btn-primary btn-large" value = "查找数据"/>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+<!--                <table align="center" width="500">-->
+
+<!--                    <tbody>-->
+<!--                        <tr>-->
+<!--                            <td align="right" height="100">-->
+<!--                                试验名称及编号：-->
+<!--                            </td>-->
+<!--                            <td>-->
+<!--                                <input type="text" name="SrmName">-->
+<!--                            </td>-->
+
+<!--                        </tr>-->
+<!--                        <tr>-->
+<!--                            <td colspan="2">-->
+<!--                                <input  type="submit" class="btn btn-primary btn-lg btn-block" value = "查找数据" />-->
+<!--                            </td>-->
+<!--                        </tr>-->
+<!--                    </tbody>-->
+<!--                </table>-->
+    </form>
+</body>
+</html>
+
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org"-->
+<!--      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>删除实验数据</title>-->
+<!--    &lt;!&ndash; Bootstrap core CSS &ndash;&gt;-->
+<!--    <link href="css/bootstrap.min.css" rel="stylesheet">-->
+<!--</head>-->
+<!--<body>-->
+<!--&lt;!&ndash;<h1>实验数据</h1>&ndash;&gt;-->
+
+<!--<script src="/js/jquery.min.js"></script>-->
+<!--<script src="/js/bootstrap.bundle.min.js"></script>-->
+
+<!--<h3 align="center">删除实验数据</h3>-->
+<!--<form action="/deleteById" method="POST">-->
+<!--    <table  align="center">-->
+<!--        <tr  align="center" >-->
+<!--            <td height="50" align="right">试验数据id：</td>-->
+<!--            <td align="left"> <input type="text" name = "id"/> </td>-->
+<!--            <td>-->
+<!--                <input type="submit" align="center" class="btn btn-primary btn-large" value = "删除数据"/>-->
+<!--            </td>-->
+<!--        </tr>-->
+
+<!--    </table>-->
+<!--</form>-->
+<!--</body>-->
+<!--</html>-->

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>已有数据</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div >
+    <h1 align="center">查询实验数据</h1>
+    <br>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" id="draw" data-toggle="modal" data-target="#exampleModal">
+        演示按钮
+    </button>
+
+
+    <form method="post" >
+
+<!--        要查看的数据：<input  id="Id"  >-->
+<!--        <input text="${srmModel.id1}">-->
+    <button type="button" id="drawChart" >查看</button>
+        <input  type="hidden" id="pkId"  th:value="${srmModel.pkId}">
+    </form>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                <!-- 曲线图-->
+                    <div id="container" style="height: 400px; max-width: 800px; margin: 0 auto"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap.bundle.min.js"></script>
+<script src="/js/highcharts/highcharts.js"></script>
+<script src="/js/highcharts/exporting.js"></script>
+<script src="/js/highcharts/series-label.js"></script>
+<script src="/js/highcharts/oldie.js"></script>
+<script src="/js/highcharts/boost.js"></script>
+<script src="/js/drawChart.js"></script>
+</body>
+</html>

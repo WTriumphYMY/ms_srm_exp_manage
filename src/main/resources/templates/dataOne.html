@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+
+    <meta charset="UTF-8">
+    <title>已有数据</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap.bundle.min.js"></script>
+
+<!--    <h3 align="center">已有数据</h3>-->
+<!--    <table>-->
+<!--        <thead>-->
+<!--            <tr>-->
+<!--                <td>-->
+<!--                    exp_time-->
+<!--                </td>-->
+<!--                <td>-->
+<!--                    exp_pressure-->
+<!--                </td>-->
+<!--                <td>-->
+<!--                    exp_force-->
+<!--                </td>-->
+<!--            </tr>-->
+<!--        </thead>-->
+<!--        <tbody>-->
+<!--            <tr>-->
+<!--                <td>-->
+
+<!--                </td>-->
+<!--            </tr>-->
+<!--        </tbody>-->
+<!--    </table>-->
+<table class="table table-bordered" align="center">
+    <thead class="thead-dark">
+    <tr align="center">
+        <th scope="col" >exp_time</th>
+        <th scope="col">exp_pressure</th>
+        <th>exp_force</th>
+    </tr>
+    </thead>
+    <tbody align="center">
+    <tr th:each="eachTimeData:${srmModel.eachTimeDataList}">
+        <td th:each="eachData:${eachTimeData}" th:text ="${eachData}" >
+
+
+    </tbody>
+</table>
+
+
+
+</body>
+</html>

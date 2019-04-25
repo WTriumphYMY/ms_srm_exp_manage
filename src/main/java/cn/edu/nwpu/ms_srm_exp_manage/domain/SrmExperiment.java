@@ -13,8 +13,8 @@ import java.util.Date;
 @Entity
 @Table(name = "tb_experiment")
 public class SrmExperiment {
-    @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @Id//主键
+    @GeneratedValue(strategy= GenerationType.IDENTITY)//自增策略
     @Column(name = "pk_id")
     private int pkId;
     @Column(name = "exp_time")
