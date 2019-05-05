@@ -26,7 +26,7 @@ public class SrmExperiment {
     @Column(name = "srm_name")
     private String srmName;
     @Column(name = "gmt_create")
-    private Date gmtCreate;
+    private String gmtCreate;
 
     public int getPkId() {
         return pkId;
@@ -68,12 +68,11 @@ public class SrmExperiment {
         this.srmName = srmName;
     }
 
-    public Date getGmtCreate() {
+    public String getGmtCreate() {
         return gmtCreate;
     }
 
-    public void setGmtCreate(Date gmtCreate) {
+    public void setGmtCreate(String gmtCreate) {
         this.gmtCreate = gmtCreate;
     }
-
 }

@@ -14,5 +14,8 @@ spring:
     view:
       prefix: classpath:/templates/
       suffix: .html
+  thymeleaf:
+    cache: false
 server:
   port: 8088
+

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <!-- Modal -->
+    <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-th-fragment="addModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">新增实验数据</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="/addOrUpdate" id="addForm" method="POST" enctype="multipart/form-data" >
+                    <table  border="0" cellspacing="0" align="left">
+                        <tr width="100">
+                            <td >
+                                <div class="form-group">
+                                    <label for="expFile">试验数据文件</label>
+                                    <input type="file" name="expFile" id="expFile" class="form-control"/>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td >
+                                <div class="form-group">
+                                    <label for="srmNameModal">试验名称/编号</label>
+                                    <input type="text" name = "srmName" id="srmNameModal" class="form-control"/>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                    <button type="submit" class="btn btn-primary" form="addForm">保存</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>

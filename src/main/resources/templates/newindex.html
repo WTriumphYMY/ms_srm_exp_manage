@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>实验数据</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesom字体 -->
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+</head>
+<body>
+<div class="jumbotron jumbotron-fluid bg-primary">
+    <div class="container">
+        <h1 class="display-4 text-center text-white">实验数据管理</h1>
+        <p class="lead text-center text-muted">对实验数据进行增删改查</p>
+    </div>
+</div>
+    <div class="row">
+        <div class="col-md-8 m-auto">
+            <p><a id="addBtn" href="#" style="float:left" onclick="addNew()">
+                <i class="icon-plus-sign icon-large" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="添加"></i>
+            </a></p>
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">试验名称/编号</th>
+                    <th scope="col">压强</th>
+                    <th scope="col">推力</th>
+                    <th scope="col">保存时间</th>
+                    <th scope="col">操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="exp,expStat : ${expData}">
+                    <th scope="row" th:text="${expStat.count}">1</th>
+                    <td th:text="${exp.srmName}" class ="text-left">Mark</td>
+                    <td class ="text-left"><a id="pChart" href="javascript:void(0);" th:onclick="showChart([[${exp.expTime}]],[[${exp.expPressure}]],'p')" style="float:left">
+                        <i class="icon-bar-chart" aria-hidden="true"></i>
+                    </a></td>
+                    <td class ="text-left"><a id="fChart" href="javascript:void(0);" th:onclick="showChart([[${exp.expTime}]],[[${exp.expForce}]],'f')" style="float:left">
+                        <i class="icon-bar-chart" aria-hidden="true"></i>
+                    </a></td>
+                    <td th:text="${exp.gmtCreate}" class ="text-left">时间</td>
+                    <td class ="text-left"><a id="editSingle" href="javascript:void(0);" th:onclick="editSingleRec([[${exp.srmName}]])" style="float:left">
+                        <i class="icon-edit" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="编辑"></i>
+                        </a>
+                        <span>&nbsp;</span>
+                        <a id="delSingle" href="javascript:void(0);" th:onclick="delSingleRec([[${exp.pkId}]])" style="float:left">
+                            <i class=" icon-trash" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="删除"></i>
+                        </a>
+                        <span>&nbsp;</span>
+                        <!--th:onclick="detailSingleRec([[${exp.pkId}]])"-->
+                        <a id="detailSingle" href="javascript:void(0);" th:onclick="detailSingleRec([[${exp.pkId}]])" style="float:left">
+                            <i class="icon-eye-open" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="下载"></i>
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+<div th:replace="~{fragments/addModal :: addModal}"></div>
+<div th:replace="~{fragments/figureModal :: figureModal}"></div>
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap.bundle.min.js"></script>
+<script src="/js/custom.js"></script>
+<script src="/js/highcharts/highcharts.js"></script>
+<script src="/js/highcharts/exporting.js"></script>
+<script src="/js/highcharts/series-label.js"></script>
+<script src="/js/highcharts/oldie.js"></script>
+<script src="/js/highcharts/boost.js"></script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>单个实验数据</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesom字体 -->
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+</head>
+<body>
+    <div class="col-md-8 m-auto">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">实验名称</th>
+                <th scope="col">时间</th>
+                <th scope="col">下载</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td th:text="${expdata.srmName}">Mark</td>
+                <td th:text="${expdata.gmtCreate}">Otto</td>
+                <td><a id="download" th:href="@{'/download/' + ${expdata.pkId}}" style="float:left">
+                    <i class="icon-cloud-download" aria-hidden="true"></i>
+                </a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <input type="hidden" id="timedata" th:value="${expdata.expTime}">
+    <input type="hidden" id="pdata" th:value="${expdata.expPressure}">
+    <input type="hidden" id="fdata" th:value="${expdata.expForce}">
+    <div class="col-md-8 m-auto" id="pchart"></div>
+    <div class="col-md-8 m-auto" id="fchart"></div>
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/detail.js"></script>
+    <script src="/js/highcharts/highcharts.js"></script>
+    <script src="/js/highcharts/exporting.js"></script>
+    <script src="/js/highcharts/series-label.js"></script>
+    <script src="/js/highcharts/oldie.js"></script>
+    <script src="/js/highcharts/boost.js"></script>
+</body>
+</html>

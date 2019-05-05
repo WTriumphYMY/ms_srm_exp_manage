@@ -52,7 +52,7 @@ public class ExperimentDataServiceImpl implements ExperimentDataService {
         exp_pressure= exp_pressure.substring(0,exp_pressure.length()-1);
         exp_force = exp_force.substring(0,exp_force.length()-1);
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日 HH时mm分ss秒");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd- HH:mm:ss");
         Date gmtCreate = new Date();
 //        Date lastModifiedTime = new Date(expFile.lastModified());
 //        String gmtCreate =sdf.format(date);//获得当前时间
@@ -61,7 +61,7 @@ public class ExperimentDataServiceImpl implements ExperimentDataService {
         srmExperiment.setExpPressure((exp_pressure));
         srmExperiment.setExpTime(exp_time);
         srmExperiment.setSrmName(srmName);
-        srmExperiment.setGmtCreate(gmtCreate);
+        srmExperiment.setGmtCreate(sdf.format(gmtCreate));
         System.out.println(gmtCreate);
 
         srmExperimentRepository.save(srmExperiment);
@@ -127,14 +127,14 @@ public class ExperimentDataServiceImpl implements ExperimentDataService {
                 }
                 double fave = fsum/n;
                 double pave = fsum/n;
-                fList.add(Double.parseDouble(fString[x]));
-                pList.add(Double.parseDouble(pString[x]));
+                fList.add(fave);
+                pList.add(pave);
             }
 
         }
-        srmExperiment.setExpTime(tList.toString());
-        srmExperiment.setExpPressure(pList.toString());
-        srmExperiment.setExpForce(fList.toString());
+        srmExperiment.setExpTime(tList.toString().substring(1, tList.toString().length()-1));
+        srmExperiment.setExpPressure(pList.toString().substring(1, pList.toString().length()-1));
+        srmExperiment.setExpForce(fList.toString().substring(1, fList.toString().length()-1));
         System.out.println(fList.toString());
         return srmExperiment;
     }
@@ -166,6 +166,49 @@ public class ExperimentDataServiceImpl implements ExperimentDataService {
         catch (IOException e)
         {
             throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void addOrUpdateSrmExperiment(File expFile, String srmName) {
+        SrmExperiment oldSrmExperiment = srmExperimentRepository.findBySrmName(srmName);
+        if (oldSrmExperiment == null){
+            addExperimentData(expFile, srmName);
+        }else {
+            String exp_time;
+            String exp_pressure;
+            String exp_force;
+            try {
+                BufferedReader br = new BufferedReader(new FileReader(expFile));
+                exp_time = "";
+                exp_pressure = "";
+                exp_force = "";
+                String line = br.readLine();
+                while ((line = br.readLine())!=null) {
+                    String[] str = line.split("\\s+");
+                    exp_time += str[0];
+                    exp_time += ",";
+                    exp_pressure += str[1];
+                    exp_pressure += ",";
+                    exp_force += str[2];
+                    exp_force += ",";
+                }
+            }
+            catch (Exception e){
+                throw new RuntimeException(e);
+            }
+            exp_time = exp_time.substring(0,exp_time.length()-1);
+            exp_pressure= exp_pressure.substring(0,exp_pressure.length()-1);
+            exp_force = exp_force.substring(0,exp_force.length()-1);
+
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd- HH:mm:ss");
+            Date gmtCreate = new Date();
+            oldSrmExperiment.setExpForce(exp_force);
+            oldSrmExperiment.setExpPressure((exp_pressure));
+            oldSrmExperiment.setExpTime(exp_time);
+            oldSrmExperiment.setSrmName(srmName);
+            oldSrmExperiment.setGmtCreate(sdf.format(gmtCreate));
+            srmExperimentRepository.save(oldSrmExperiment);
         }
     }
 }

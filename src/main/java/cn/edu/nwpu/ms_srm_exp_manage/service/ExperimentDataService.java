@@ -59,4 +59,10 @@ public interface ExperimentDataService {
      */
     void toFile(String path, Integer id);//如何加入文件路径？
 
+    /**
+     * 新增或更新，若是人们Name相同则为更新
+     * @param expFile
+     * @param srmName
+     */
+    void addOrUpdateSrmExperiment(File expFile, String srmName);
 }
