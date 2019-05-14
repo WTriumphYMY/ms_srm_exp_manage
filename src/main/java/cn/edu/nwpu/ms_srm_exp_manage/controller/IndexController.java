@@ -14,6 +14,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import java.io.*;
 import java.nio.file.Files;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @ClassName IndexController
@@ -30,19 +32,19 @@ public class IndexController {
     @Autowired
     ExperimentDataService experimentDataService;
 
-    @GetMapping("/new")
+    @GetMapping("/index")
     public String newIndex(Model model) {
         model.addAttribute("expData", srmExperimentRepository.findAll());
         return "newindex";
     }
 
     @PostMapping("/addOrUpdate")
-    public ModelAndView add(Model model, MultipartFile expFile, String srmName) throws IOException {
+    public ModelAndView add(MultipartFile expFile, String srmName) throws IOException {
 
         File file = new File("D://test1.txt");
         expFile.transferTo(file);
         experimentDataService.addOrUpdateSrmExperiment(file, srmName);
-        return new ModelAndView("redirect:/new");
+        return new ModelAndView("redirect:/index");
     }
 
     @GetMapping("/getSrmExpById/{pkId}")
@@ -52,6 +54,13 @@ public class IndexController {
         return "detail";
     }
 
+    @PostMapping("/getExpByName")
+    @ResponseBody
+    public SrmExperiment findBySrmName(@RequestParam String srmName) {
+        SrmExperiment srmExperiment = srmExperimentRepository.findBySrmName(srmName);
+
+        return srmExperiment;
+    }
 
     @GetMapping("/download/{pkId}")
     public ResponseEntity<byte[]> downloadFile(@PathVariable Integer pkId) throws IOException {
@@ -85,7 +94,13 @@ public class IndexController {
     @GetMapping("/deleteById/{pkId}")
     public ModelAndView deleteById(@PathVariable("pkId") Integer pkId) {
         srmExperimentRepository.deleteById(pkId);
-        return new ModelAndView("redirect:/new");
+        return new ModelAndView("redirect:/index");
+    }
+
+    @PostMapping("/findAllSrmName")
+    @ResponseBody
+    public List<String> findAllSrmName(){
+        return srmExperimentRepository.findAll().stream().map(SrmExperiment :: getSrmName).collect(Collectors.toList());
     }
 }
 

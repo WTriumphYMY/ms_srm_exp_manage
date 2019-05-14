@@ -9,13 +9,20 @@ spring:
       min-idle: 5
       max-active: 20
       max-wait: 6000
-
   mvc:
     view:
       prefix: classpath:/templates/
       suffix: .html
   thymeleaf:
     cache: false
+  application:
+    name: ms-srm-exp-manage
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: false
 server:
   port: 8088
 
