@@ -38,6 +38,12 @@ public class IndexController {
         return "newindex";
     }
 
+    @PostMapping("/findAllExp")
+    @ResponseBody
+    public List<SrmExperiment> findAll(){
+        return srmExperimentRepository.findAll();
+    }
+
     @PostMapping("/addOrUpdate")
     public ModelAndView add(MultipartFile expFile, String srmName) throws IOException {
 
@@ -102,6 +108,7 @@ public class IndexController {
     public List<String> findAllSrmName(){
         return srmExperimentRepository.findAll().stream().map(SrmExperiment :: getSrmName).collect(Collectors.toList());
     }
+
 }
 
 
